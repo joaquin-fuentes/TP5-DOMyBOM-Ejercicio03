@@ -1,0 +1,11 @@
+
+#listaTareas{
+    cursor:default;
+}
+.marcar{
+    cursor: pointer;
+    margin-right: 10px;
+}
+.eliminar{
+    cursor: pointer;
+}
