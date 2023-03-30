@@ -5,10 +5,11 @@ y un botón que al ser presionado agregue dicha tarea a una lista,
  cada elemento ingresado en la lista debe poder ser eliminado con un botón creado para ese fin. 
  */
 
+let id 
 const botonNuevaTarea = document.querySelector("#btnCargarNuevaTarea");
 const formulario = document.querySelector("#formulario");
 const botonGuardar = document.querySelector("#btnGuardar");
-const botonEliminar = document.querySelector("#btnEliminar")
+const botonEliminar = document.querySelector(`#btnEliminar${id+1}`)
 let tarea = document.querySelector("#txtTarea")
 let listaTareas = document.querySelector("#listaTareas")
 let listadoDeTareas = []
@@ -35,9 +36,24 @@ function guardarNuevaTarea(){
 
     
 }
-function eliminarTarea(){
+ function eliminarTarea(){
+    let numeroAEliminar = parseInt(prompt("Escriba el numero de la tarea que desea ELIMINAR:")) 
 
-}
+        
+        if(numeroAEliminar <= listadoDeTareas.length){
+
+            for(let i = 1 ; i <= listadoDeTareas.length ; i++){
+                if(numeroAEliminar == i){
+                    listadoDeTareas.splice(numeroAEliminar - 1, 1)
+                }
+            }
+            alert(`La tarea numero ${numeroAEliminar} fue eliminada`)
+            mostrarTareas()
+        }   else {
+            alert("Debe ingresar un número válido, vuelva a intentar.")
+        } 
+    
+ }
 
 function mostrarTareas(){
     listaTareas.innerHTML = " "
@@ -59,26 +75,20 @@ function mostrarTareas(){
             <div class="border border-primary rounded p-2 mb-4 text-primary-emphasis d-flex justify-content-between align-content-center flex-row">
                 
                 <b class="my-auto">${i + 1} ${listadoDeTareas[i]}</b>
-                <button class="btn btn-danger m-1 text-start" id="btnEliminar">Eliminar</button>
              </div>
              `
         }
+        listaTareas.innerHTML += `<button class="btn btn-danger m-1 text-start" onclick="eliminarTarea()" id="btnEliminar">Eliminar</button>`
 
     }
 }
-// function eliminarNuevaTarea(){
-    
-//     listadoDeTareas.pop()
-//     console.log(listadoDeTareas)
-    
-// }
+
 
 
 window.addEventListener('load', function() {
     // Código a ejecutar cuando se cargue la página
   mostrarTareas()
   });
-
 botonNuevaTarea.addEventListener('click', function() {
       mostrarFormulario()
 });
@@ -87,6 +97,3 @@ botonGuardar.addEventListener("click", function(e){
     e.preventDefault();
      guardarNuevaTarea();
 })
-//  botonEliminar.addEventListener("click", function(){
-//       eliminarTarea();
-//  })
