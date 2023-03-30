@@ -60,7 +60,7 @@ function mostrarTareas(){
 
     if(listadoDeTareas.length === 0){
         listaTareas.innerHTML += `
-        <h1 class=" my-3 text-primary-emphasis" >Aún no hay tareas cargadas</h1>
+        <h1 class=" my-3 text-primary-emphasis text-center" >Aún no hay tareas cargadas</h1>
     
 
          `
